@@ -1,5 +1,5 @@
 import Knex from './knex';
-import GUID from 'node-uuid';  // uuid module can be used instead
+const Joi = require('joi');
 
 const routes = [
     {  
@@ -38,25 +38,41 @@ const routes = [
         }
     },
     {
-        method: "POST",
-        path: "/pets",
+        
+        path: '/pets',
+        method: 'POST',
         handler: (request, response) => {
-            const {pet} = request.payload;
-            const guid = GUID.v4();
+            const pet = request.payload;  // formdata or json
             const create = Knex('pets').insert({
                 name: pet.name,
-                species: pet.species,
+                type: pet.type,
+                breed: pet.breed,
+                location: pet.location,
+                latitude: pet.latitude,
+                longitude: pet.longitude,
                 picture_url: pet.picture_url,
-                guid,
-            }).then(res => {
+                status: true
+            }).then(result => {
                 response({
-                    data: guid,
                     message: `Pet (${pet.name}) successfully added.`
                 });
             }).catch(error => {
                 reply(`Server-Side Error >> ${error}`);
             });
+        },
+        config: {
+            validate: {
+                payload: {
+                    name: Joi.string().alphanum().min(3).max(100).required(),
+                    type: Joi.string().min(3).max(100).required(),
+                    breed: Joi.string().min(3).max(100).required(),
+                    location: Joi.string().min(3).max(100).required(),
+                    latitude: Joi.number().required(),
+                    longitude: Joi.number().required(),
+                    picture_url: Joi.string().uri().trim().required()
+                }
+            }
         }
-    },
+    }
 ];
 export default routes;

@@ -2,6 +2,7 @@ import Knex from './knex';
 import routes from './routes';
 
 const Hapi = require('hapi');       // create an instance of hapi
+const Joi = require('joi');
 const server = new Hapi.Server();   // create our server
 const thisPort = 8000;              // specifier the port
 
