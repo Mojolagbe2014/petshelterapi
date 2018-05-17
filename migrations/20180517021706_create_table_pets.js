@@ -13,8 +13,8 @@ exports.up = function(knex, Promise) {
             petsTable.string('type', 250).notNullable();
             petsTable.string('breed', 100).notNullable().unique();
             petsTable.string('location', 100).notNullable();
-            petsTable.string('longitude', 100).notNullable();
             petsTable.string('latitude', 100).notNullable();
+            petsTable.string('longitude', 100).notNullable();
             petsTable.string('picture_url', 250).notNullable();
             petsTable.boolean('status').notNullable().defaultTo( true );
 
