@@ -13,16 +13,16 @@ const routes = [
     
     {  
         method: 'GET',
-        path: '/welcome/{name}',
+        path: '/welcome/{name}/',
         handler: (request, response) => response(`Welcome ${request.params.name} to Pet Shelter API`)
     },
     
     {
-        path: '/pets',
+        path: '/pets/',
         method: 'GET',
         handler: (request, response) => {
             const read = Knex('pets').where({status: true})
-                .select('name','type','breed','location', 'longitude', 'latitude','picture_url' )
+                .select('id','name','type','breed','location', 'longitude', 'latitude','picture_url' )
                 .then(results => {
                     if(!results || results.length === 0) {
                         response({
@@ -44,11 +44,11 @@ const routes = [
     },
     
     {
-        path: '/pets/{id}',
+        path: '/pets/{id}/',
         method: 'GET',
         handler: (request, response) => {
             const read = Knex('pets').where({id: request.params.id})
-                .select('name','type','breed','location', 'longitude', 'latitude','picture_url' )
+                .select('id','name','type','breed','location', 'longitude', 'latitude','picture_url' )
                 .then(pet => {
                     if(!pet || pet.length === 0) {
                         response({
@@ -76,7 +76,7 @@ const routes = [
     },
     
     {
-        path: '/pets',
+        path: '/pets/',
         method: 'POST',
         handler: (request, response) => {
             const pet = request.payload;  // formdata or json
@@ -114,7 +114,7 @@ const routes = [
     
     {
         method: 'PUT',
-        path:   '/pets/{id}',
+        path:   '/pets/{id}/',
         handler: (request, response) => {
             const pet = request.payload;  // formdata or json
             const updates = Knex('pets')
@@ -157,7 +157,7 @@ const routes = [
     },
     
     {
-        path: '/pets/{id}',
+        path: '/pets/{id}/',
         method: 'DELETE',
         handler: (request, response) => {
             const del = Knex('pets')
