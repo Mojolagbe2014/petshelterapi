@@ -1,60 +1,33 @@
-import Knex from './knex';
+import Knex from './knex';          
+import routes from './routes';
 
-const Hapi = require('hapi');
+const Hapi = require('hapi');       // create an instance of hapi
+const server = new Hapi.Server();   // create our server
+const thisPort = 8000;              // specifier the port
 
-// create our server
-const server = new Hapi.Server();
-
+// ------------------
 // configure the port
+// ------------------
 server.connection({  
-    port: 8000,
+    port: thisPort,
     host: 'localhost'
 });
 
-// basic routes
-server.route({  
-    method: 'GET',
-    path: '/',
-    handler: (request, response) => response('Welcome to Pet Shelter API')
+// --------------
+// Load Routes
+// -------------- 
+routes.forEach(route => {
+    console.log(`attaching ${route.path}`);
+    server.route(route);
 });
 
-server.route({  
-    method: 'GET',
-    path: '/welcome/{name}',
-    handler: (request, response) => response(`Welcome ${request.params.name} to Pet Shelter API`)
-});
-
-server.route( {
-    path: '/pets',
-    method: 'GET',
-    handler: (request, response) => {
-        const getOperation = Knex('pets').where({status: true})
-            .select('name','type','breed','location', 'longitude', 'latitude','picture_url' )
-            .then(results => {
-                if(!results || results.length === 0) {
-                    response({
-                        error: true,
-                        errMessage: 'No pets found!',
-                    });
-                }
-                response({
-                    dataCount: results.length,
-                    data: results,
-                });
-
-            })
-            .catch(error => {
-                reply('Server-Side Error >> '+error);
-            });
-
-}
-} );
-
-// start the server
-server.start((err) => {  
-    if (err) {
-        console.error(err);
+// ------------------
+// Start The Server
+// ------------------
+server.start(error => {  
+    if (error) {
+        console.error(error);
     }
-
-    console.log('App running on port 8000...');
+    console.log(`Server started at ${server.info.uri }`);
+    console.log(`App running on port ${thisPort}...`);
 });
