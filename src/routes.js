@@ -1,4 +1,5 @@
 import Knex from './knex';
+import GUID from 'node-uuid';  // uuid module can be used instead
 
 const routes = [
     {  
@@ -15,7 +16,7 @@ const routes = [
         path: '/pets',
         method: 'GET',
         handler: (request, response) => {
-            const getOperation = Knex('pets').where({status: true})
+            const read = Knex('pets').where({status: true})
                 .select('name','type','breed','location', 'longitude', 'latitude','picture_url' )
                 .then(results => {
                     if(!results || results.length === 0) {
@@ -41,6 +42,20 @@ const routes = [
         path: "/pets",
         handler: (request, response) => {
             const {pet} = request.payload;
+            const guid = GUID.v4();
+            const create = Knex('pets').insert({
+                name: pet.name,
+                species: pet.species,
+                picture_url: pet.picture_url,
+                guid,
+            }).then(res => {
+                response({
+                    data: guid,
+                    message: `Pet (${pet.name}) successfully added.`
+                });
+            }).catch(error => {
+                reply(`Server-Side Error >> ${error}`);
+            });
         }
     },
 ];
