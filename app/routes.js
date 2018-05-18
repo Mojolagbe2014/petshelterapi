@@ -5,24 +5,27 @@ const Joi = require('joi');
 //const Joi = Hapi.types;
 
 const routes = [
+    // Welcome
     {  
         method: 'GET',
         path: '/',
         handler: (request, response) => response('Welcome to Pet Shelter API')
     },
     
+    // Welcome Custom
     {  
         method: 'GET',
         path: '/welcome/{name}/',
         handler: (request, response) => response(`Welcome ${request.params.name} to Pet Shelter API`)
     },
     
+    // Read Pets
     {
         path: '/pets/',
         method: 'GET',
         handler: (request, response) => {
             const read = Knex('pets').where({status: true})
-                .select('id','name','type','breed','location', 'longitude', 'latitude','picture_url' )
+                .select('id','name','type','breed','location','latitude','longitude','picture_url' )
                 .then(results => {
                     if(!results || results.length === 0) {
                         response({
@@ -41,14 +44,15 @@ const routes = [
                 });
 
         }
-    },
+    }, 
     
+    // Read a Pet
     {
         path: '/pets/{id}/',
         method: 'GET',
         handler: (request, response) => {
             const read = Knex('pets').where({id: request.params.id})
-                .select('id','name','type','breed','location', 'longitude', 'latitude','picture_url' )
+                .select('id','name','type','breed','location','latitude','longitude','picture_url' )
                 .then(pet => {
                     if(!pet || pet.length === 0) {
                         response({
@@ -75,6 +79,7 @@ const routes = [
         }
     },
     
+    // Create
     {
         path: '/pets/',
         method: 'POST',
@@ -104,14 +109,15 @@ const routes = [
                     type: Joi.string().min(3).max(100).required(),
                     breed: Joi.string().min(3).max(100).required(),
                     location: Joi.string().min(3).max(100).required(),
-                    latitude: Joi.number().required(),
-                    longitude: Joi.number().required(),
+                    latitude: Joi.number().min(-90).max(90).required(),
+                    longitude: Joi.number().min(-180).max(180).required(),
                     picture_url: Joi.string().uri().trim().required()
                 }
             }
         }
     },
     
+    // Update
     {
         method: 'PUT',
         path:   '/pets/{id}/',
@@ -145,8 +151,8 @@ const routes = [
                     type: Joi.string().min(3).max(100).required(),
                     breed: Joi.string().min(3).max(100).required(),
                     location: Joi.string().min(3).max(100).required(),
-                    latitude: Joi.number().required(),
-                    longitude: Joi.number().required(),
+                    latitude: Joi.number().min(-90).max(90).required(),
+                    longitude: Joi.number().min(-180).max(180).required(),
                     picture_url: Joi.string().uri().trim().required()
                 },
                 params: {
@@ -156,6 +162,7 @@ const routes = [
         }
     },
     
+    // Delete
     {
         path: '/pets/{id}/',
         method: 'DELETE',
