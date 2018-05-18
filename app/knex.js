@@ -1,11 +1,13 @@
+import config from '../config/config';  
+
 export default require('knex')( {
-    client: 'mysql',
+    client: config.client,
     connection: {
-        host: '127.0.0.1',
-        user: 'root',
-        password: 'mysql',
-        database: 'pets',
-        charset: 'utf8',
+        host: config.host,
+        user: config.user,
+        password: config.password,
+        database: config.database,
+        charset: config.charset
     }
 
 } );

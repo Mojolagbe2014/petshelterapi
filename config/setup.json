@@ -1,0 +1,20 @@
+{
+    "author": {
+        "name": "Jamiu Mojolagbe",
+        "email": "mojolagbe@gmail.com"
+    },
+    "development": {
+        "user": "root",
+        "password": "mysql",
+        "database": "pets",
+        "host": "127.0.0.1",
+        "port": 8000,
+        "client": "mysql",
+        "charset": "utf8",
+        "migrations": "knex_migrations",
+        "seeds": "./seeds"
+    },
+    "production": {
+        "use_env_variable": "DATABASE_URL"
+    }
+}

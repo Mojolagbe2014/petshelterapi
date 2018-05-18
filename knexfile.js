@@ -1,20 +1,18 @@
+import config from './config/config';
+
 module.exports = {
 
     development: {
+        migrations: { tableName: config.migrations },
+        seeds: { tableName: config.seeds },
 
-        migrations: { tableName: 'knex_migrations' },
-        seeds: { tableName: './seeds' },
-
-        client: 'mysql',
+        client: config.client,
         connection: {
-
-            host: '127.0.0.1',
-
-            user: 'root',
-            password: 'mysql',
-
-            database: 'pets',
-            charset: 'utf8',
+            host: config.host,
+            user: config.user,
+            password: config.password,
+            database: config.database,
+            charset: config.charset
         }
 
     }
