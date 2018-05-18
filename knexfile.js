@@ -1,4 +1,4 @@
-import config from './config/config';
+const config = require(__dirname+'/config/config');
 
 module.exports = {
 

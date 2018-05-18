@@ -25,7 +25,7 @@ const routes = [
         method: 'GET',
         handler: (request, response) => {
             const read = Knex('pets').where({status: true})
-                .select('id','name','type','breed','location','latitude','longitude','picture_url' )
+                .select('id','name','type','breed','location','latitude','longitude')
                 .then(results => {
                     if(!results || results.length === 0) {
                         response({
@@ -52,7 +52,7 @@ const routes = [
         method: 'GET',
         handler: (request, response) => {
             const read = Knex('pets').where({id: request.params.id})
-                .select('id','name','type','breed','location','latitude','longitude','picture_url' )
+                .select('id','name','type','breed','location','latitude','longitude')
                 .then(pet => {
                     if(!pet || pet.length === 0) {
                         response({
@@ -92,7 +92,7 @@ const routes = [
                 location: pet.location,
                 latitude: pet.latitude,
                 longitude: pet.longitude,
-                picture_url: pet.picture_url,
+                //picture_url: pet.picture_url,
                 status: true
             }).then(result => {
                 response({
@@ -110,8 +110,8 @@ const routes = [
                     breed: Joi.string().min(3).max(100).required(),
                     location: Joi.string().min(3).max(100).required(),
                     latitude: Joi.number().min(-90).max(90).required(),
-                    longitude: Joi.number().min(-180).max(180).required(),
-                    picture_url: Joi.string().uri().trim().required()
+                    longitude: Joi.number().min(-180).max(180).required()
+                    //picture_url: Joi.string().uri().trim().required()
                 }
             }
         }
@@ -131,8 +131,8 @@ const routes = [
                 breed: pet.breed,
                 location: pet.location,
                 latitude: pet.latitude,
-                longitude: pet.longitude,
-                picture_url: pet.picture_url
+                longitude: pet.longitude
+                //picture_url: pet.picture_url
             })
             .then(result => {
                 response({
@@ -152,8 +152,8 @@ const routes = [
                     breed: Joi.string().min(3).max(100).required(),
                     location: Joi.string().min(3).max(100).required(),
                     latitude: Joi.number().min(-90).max(90).required(),
-                    longitude: Joi.number().min(-180).max(180).required(),
-                    picture_url: Joi.string().uri().trim().required()
+                    longitude: Joi.number().min(-180).max(180).required()
+                    //picture_url: Joi.string().uri().trim().required()
                 },
                 params: {
                     id: Joi.number().integer().min(1)

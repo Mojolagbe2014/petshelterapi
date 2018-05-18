@@ -9,9 +9,9 @@ exports.seed = function(knex, Promise) {
             location: 'Winnipeg, MB',
             latitude: '49.80666189999999',
             longitude: '-97.168656',
-            picture_url: 'http://pngimg.com/upload/pigeon_PNG3423.png',
-            status: true,
-        },
+            //picture_url: 'http://pngimg.com/upload/pigeon_PNG3423.png',
+            status: true
+        }
     ];
 
     return knex(tableName)

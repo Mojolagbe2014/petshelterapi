@@ -15,7 +15,7 @@ exports.up = function(knex, Promise) {
             petsTable.string('location', 100).notNullable();
             petsTable.string('latitude', 100).notNullable();
             petsTable.string('longitude', 100).notNullable();
-            petsTable.string('picture_url', 250).notNullable();
+            //petsTable.string('picture_url', 250).notNullable();
             petsTable.boolean('status').notNullable().defaultTo( true );
 
             petsTable.timestamp('created_at').notNullable();
