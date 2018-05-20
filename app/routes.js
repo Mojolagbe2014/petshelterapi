@@ -140,11 +140,15 @@ const routes = [
             })
             .then(result => {
                 response({
+                    status: 1,
                     message: `Pet (${pet.name}) successfully updated.`
                 });
             })
             .catch(error => {
-                response(`Server-Side Error >> ${error}`);
+                response({
+                    status:0,
+                    message: `Server-Side Error >> ${error}`
+                });
             });
                 
         },
@@ -176,12 +180,16 @@ const routes = [
                 .del()
                 .then(result => {
                     response({
+                        status: 1,
                         message: `Pet with ID = ${request.params.id} successfully deleted`
                     });
 
                 })
                 .catch(error => {
-                    response('Server-Side Error >> '+error);
+                    response({
+                        status: 0,
+                        message: 'Server-Side Error >> '+error
+                    });
                 });
         },
         config: {
