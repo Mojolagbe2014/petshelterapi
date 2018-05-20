@@ -13,7 +13,8 @@ const server = new Hapi.Server();   // create our server
 // ------------------
 server.connection({  
     port: config.port,
-    host: config.host
+    host: config.host,
+    routes: { cors: true }
 });
 
 // --------------
