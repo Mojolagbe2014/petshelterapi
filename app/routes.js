@@ -96,10 +96,14 @@ const routes = [
                 status: true
             }).then(result => {
                 response({
+                    status: 1,
                     message: `Pet (${pet.name}) successfully added.`
                 });
             }).catch(error => {
-                response(`Server-Side Error >> ${error}`);
+                response({
+                    status: 0,
+                    message: `Server-Side Error >> ${error}`
+                });
             });
         },
         config: {
