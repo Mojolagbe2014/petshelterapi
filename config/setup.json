@@ -14,7 +14,18 @@
         "migrations": "knex_migrations",
         "seeds": "./seeds"
     },
-    "production": {
+    "product": {
         "use_env_variable": "DATABASE_URL"
+    },
+    "production":{
+        "user": "bee27b68282502",
+        "password": "1b7be023",
+        "database": "heroku_12a48bc26521d1f",
+        "host": "us-cdbr-iron-east-04.cleardb.net",
+        "port": 3306,
+        "client": "mysql",
+        "charset": "utf8",
+        "migrations": "knex_migrations",
+        "seeds": "./seeds"
     }
 }
