@@ -16,7 +16,8 @@
         "client": "mysql",
         "charset": "utf8",
         "migrations": "knex_migrations",
-        "seeds": "./seeds"
+        "seeds": "./seeds",
+        "dboperation": "seed"
     },
     "config2": {
         "env": "production",
