@@ -8,6 +8,18 @@
     },
     "config": {
         "env": "production",
+        "user": "bf8f077f5e7131",
+        "password": "8ed335c4",
+        "database": "heroku_c4bd0963ee0c512",
+        "host": "us-cdbr-iron-east-01.cleardb.net",
+        "port": 3306,
+        "client": "mysql",
+        "charset": "utf8",
+        "migrations": "knex_migrations",
+        "seeds": "./seeds"
+    },
+    "config2": {
+        "env": "production",
         "user": "b2c4d9376f7c46",
         "password": "8593db63",
         "database": "heroku_6c3715b17185b6c",
@@ -18,7 +30,7 @@
         "migrations": "knex_migrations",
         "seeds": "./seeds"
     },
-    "config2": {
+    "config3": {
         "env": "development",
         "user": "root",
         "password": "mysql",
