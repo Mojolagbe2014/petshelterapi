@@ -19,7 +19,7 @@
         "seeds": "./seeds",
         "dboperation": "none"
     },
-    "config2": {
+    "config3": {
         "env": "development",
         "user": "root",
         "password": "mysql",
