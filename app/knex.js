@@ -5,6 +5,13 @@ var Knex        = require('knex')(dbconfig[config.env]);
 
 module.exports = Knex;
 
-//Knex.migrate.rollback([dbconfig]);
-//Knex.migrate.latest([dbconfig]); 
-//Knex.seed.run([dbconfig]);
+switch (config.dboperation) {
+    case 'rollback':    Knex.migrate.rollback([dbconfig]);
+                        break;
+    case 'migrate':     Knex.migrate.latest([dbconfig]); // create database table
+                        break;
+    case 'seed':        Knex.seed.run([dbconfig]);  // seed the database table
+                        break;
+    default:            // do nothing
+                        break;
+}
