@@ -17,7 +17,7 @@
         "charset": "utf8",
         "migrations": "knex_migrations",
         "seeds": "./seeds",
-        "dboperation": "rollback"
+        "dboperation": "migrate"
     },
     "config3": {
         "env": "development",
