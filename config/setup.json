@@ -1,20 +1,33 @@
 {
     "author": {
         "name": "Jamiu Mojolagbe",
-        "email": "mojolagbe@gmail.com"
+        "email": "mojolagbe@gmail.com",
+        "phone": "2048697315",
+        "GoogleAPIKey": "AIzaSyDQ27WgInDdmdUlbeM_-CsTmfY_Jx0LCyg",
+        "DarkSkyAPIKey": "752ca7ee5d3924bfb68660d1ad417709"
     },
-    "development": {
-        "user": "root",
-        "password": "mysql",
-        "database": "pets",
-        "host": "127.0.0.1",
-        "port": 8000,
+    "config": {
+        "env": "production",
+        "user": "b2c4d9376f7c46",
+        "password": "8593db63",
+        "database": "heroku_6c3715b17185b6c",
+        "host": "us-cdbr-iron-east-04.cleardb.net",
+        "port": 3306,
         "client": "mysql",
         "charset": "utf8",
         "migrations": "knex_migrations",
         "seeds": "./seeds"
     },
-    "production": {
-        "use_env_variable": "DATABASE_URL"
+    "config2": {
+        "env": "development",
+        "user": "root",
+        "password": "mysql",
+        "database": "pets",
+        "host": "localhost",
+        "port": 8080,
+        "client": "mysql",
+        "charset": "utf8",
+        "migrations": "knex_migrations",
+        "seeds": "./seeds"
     }
 }

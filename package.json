@@ -1,7 +1,7 @@
 {
-  "name": "pet-shelter-api",
+  "name": "petshelterapi",
   "version": "1.0.0",
-  "main": "./",
+  "main": "./app/server.js",
   "scripts": {
     "test": "echo 'Error: no specified test' && exit 1",
     "start1": "node bootstrap.js",
@@ -20,10 +20,10 @@
     "babel-preset-es2015": "^6.24.1",
     "hapi": "^16.6.3",
     "hapi-auth-jwt": "^4.0.0",
-    "joi": "^13.3.0",
-    "jsonwebtoken": "^8.2.1",
+    "joi": "^13.6.0",
+    "jsonwebtoken": "^8.3.0",
     "knex": "^0.14.6",
-    "mysql": "^2.15.0",
+    "mysql": "^2.16.0",
     "node-uuid": "^1.4.8"
   },
   "devDependencies": {
@@ -31,7 +31,7 @@
     "babel-cli": "^6.26.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-stage-2": "^6.5.0",
-    "nodemon": "^1.17.4"
+    "nodemon": "^1.18.4"
   },
   "keywords": [],
   "bugs": {

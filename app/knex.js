@@ -1,13 +1,10 @@
-import config from '../config/config';  
+var config = require('../config/config'); 
 
-export default require('knex')( {
-    client: config.client,
-    connection: {
-        host: config.host,
-        user: config.user,
-        password: config.password,
-        database: config.database,
-        charset: config.charset
-    }
+var dbconfig    = require('../knexfile'); 
+var Knex        = require('knex')(dbconfig[config.env]);
 
-} );
+module.exports = Knex;
+
+//Knex.migrate.rollback([dbconfig]);
+//Knex.migrate.latest([dbconfig]); 
+//Knex.seed.run([dbconfig]);

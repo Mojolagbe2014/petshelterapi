@@ -1,21 +1,30 @@
 'use strict';
 
-import config from '../config/config';
-import Knex from './knex';          
-import routes from './routes';
-
+// ---------------------
+// import required files
+// ----------------------
+var config = require('../config/config');
+var Knex = require('./knex');
+const routes = require('./routes');
 const Hapi = require('hapi');       // create an instance of hapi
 const Joi = require('joi');
 const server = new Hapi.Server();   // create our server
 
+// ----------------
+// api author info
+// ----------------
+const author    = require('../config/author');
+
+// -------------------------
+// set connection parameters
+// -------------------------
+var connecParams = (config.env === 'production')  ?   { port: process.env.PORT, routes: { cors: true } }
+                : {port: config.port, host:config.host, routes: { cors: true }};
+
 // ------------------
 // configure the port
 // ------------------
-server.connection({  
-    port: config.port,
-    host: config.host,
-    routes: { cors: true }
-});
+server.connection(connecParams);
 
 // --------------
 // Load Routes

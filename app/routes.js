@@ -1,5 +1,5 @@
-import Knex from './knex';
-import GUID from 'node-uuid';  // uuid module can be used instead
+var Knex = require('./knex');
+var GUID = require('node-uuid'); // uuid module can be used instead
 
 const Joi = require('joi');
 //const Joi = Hapi.types;
@@ -201,4 +201,4 @@ const routes = [
         }
     }
 ];
-export default routes;
+module.exports = routes;
